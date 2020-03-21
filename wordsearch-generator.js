@@ -1,7 +1,7 @@
 function randomFill(wordsearch){
     const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    for (let row = 0; row < 12; row++){
-      for (let col = 0; col < 12; col++){
+    for (let row = 0; row < wordsearch.length; row++){
+      for (let col = 0; col < wordsearch[0].length; col++){
         if (wordsearch[row][col] === "-"){
           let randomLetter = letters.charAt(Math.floor(Math.random() * letters.length));
           wordsearch[row][col]=randomLetter
@@ -11,17 +11,19 @@ function randomFill(wordsearch){
   }
   
   function addWord(word,wordsearch){
+    
     let directions = ["row", "column", "diagdown", "diagup",  "rowrev", "colrev", "diagrevup", "diagrevdown"];
     let x, y = 0
     let valid = false
     while (!valid) {
-      let randIndex=Math.floor(Math.random() * 8);
+      let randIndex = Math.floor(Math.random() * 6);
+      randIndex=Math.floor(Math.random() * 8);
       console.log(randIndex)
       valid = true 
     
   
       if (directions[randIndex] === "row") {
-        let row=Math.floor(Math.random() * 12)
+        let row=Math.floor(Math.random() * wordsearch.length)
         let col=Math.floor(Math.random() * (13 - word.length))
         let rewind = [];
         
@@ -43,9 +45,9 @@ function randomFill(wordsearch){
       }
   
       else if (directions[randIndex] === "column") {
-        let row=Math.floor(Math.random() * (12 - word.length))
+        let row=Math.floor(Math.random() * (wordsearch.length - word.length))
         //Math.floor(Math.random()  * (13 - word.length))
-        let col=Math.floor(Math.random() * 12)
+        let col=Math.floor(Math.random() * wordsearch[0].length)
         let rewind = [];
         
         for (let i = 0; i< word.length; i++){
@@ -68,9 +70,9 @@ function randomFill(wordsearch){
   
       else if (directions[randIndex] === "diagdown") {
         console.log("attempting diag")
-        let row=Math.floor(Math.random() * (12 - word.length))
+        let row=Math.floor(Math.random() * (wordsearch.length - word.length))
         //Math.floor(Math.random()  * (13 - word.length))
-        let col=Math.floor(Math.random() * (12 - word.length))
+        let col=Math.floor(Math.random() * (wordsearch[0].length - word.length))
         let rewind = [];
         
         for (let i = 0; i< word.length; i++){
@@ -94,9 +96,9 @@ function randomFill(wordsearch){
       else if (directions[randIndex] === "diagup") {
         console.log("attempting upward diag")
         console.log(word)
-        let col=Math.floor(Math.random() * (12 - word.length))
+        let col=Math.floor(Math.random() * (wordsearch[0].length - word.length))
         //Math.floor(Math.random()  * (13 - word.length))
-        let row=word.length + Math.floor(Math.random() * (12 - word.length))
+        let row=word.length + Math.floor(Math.random() * (wordsearch.length - word.length))
         let rewind = [];
         
         for (let i = 0; i< word.length; i++){
@@ -119,9 +121,9 @@ function randomFill(wordsearch){
       else if (directions[randIndex] === "rowrev") {
         console.log("reverse row")
         console.log(word)
-        let row=Math.floor(Math.random() * (12 - word.length))
+        let row=Math.floor(Math.random() * (wordsearch.length - word.length))
         //Math.floor(Math.random()  * (13 - word.length))
-        let col=word.length + Math.floor(Math.random() * (12 - word.length))
+        let col=word.length + Math.floor(Math.random() * (wordsearch[0].length - word.length))
         let rewind = [];
         
         for (let i = 0; i< word.length; i++){
@@ -145,9 +147,9 @@ function randomFill(wordsearch){
       else if (directions[randIndex] === "colrev") {
         console.log("colrev")
         console.log(word)
-        let col=Math.floor(Math.random() * 12)
+        let col=Math.floor(Math.random() * wordsearch[0].length)
         //Math.floor(Math.random()  * (13 - word.length))
-        let row=word.length + Math.floor(Math.random() * (12 - word.length))
+        let row=word.length + Math.floor(Math.random() * (wordsearch.length - word.length))
         let rewind = [];
         
         for (let i = 0; i< word.length; i++){
@@ -171,9 +173,9 @@ function randomFill(wordsearch){
       else if (directions[randIndex] === "diagrevdown") {
         console.log("diagrevdown")
         console.log(word)
-        let col=word.length + Math.floor(Math.random() * (12 - word.length))
+        let col=word.length + Math.floor(Math.random() * (wordsearch[0].length - word.length))
         //Math.floor(Math.random()  * (13 - word.length))
-        let row=Math.floor(Math.random() * (12 - word.length))
+        let row=Math.floor(Math.random() * (wordsearch.length - word.length))
         let rewind = [];
         
         for (let i = 0; i< word.length; i++){
@@ -197,9 +199,9 @@ function randomFill(wordsearch){
       else if (directions[randIndex] === "diagrevup") {
         console.log("diagrevup")
         console.log(word)
-        let col=word.length + Math.floor(Math.random() * (12 - word.length))
+        let col=word.length + Math.floor(Math.random() * (wordsearch[0].length - word.length))
         //Math.floor(Math.random()  * (13 - word.length))
-        let row=word.length + Math.floor(Math.random() * (12 - word.length))
+        let row=word.length + Math.floor(Math.random() * (wordsearch.length - word.length))
         let rewind = [];
         
         for (let i = 0; i< word.length; i++){
@@ -231,9 +233,9 @@ function randomFill(wordsearch){
   function displayWordsearch(wordsearch) {
     console.log(" _________________________")
     console.log("|                         |")
-    for (let row = 0; row < 12; row ++){
+    for (let row = 0; row < wordsearch.length; row ++){
       line="| "
-      for (let col = 0 ; col < 12 ; col++ ){
+      for (let col = 0 ; col < wordsearch[0].length ; col++ ){
         line = line + wordsearch[row][col] + " "
       line = line + "|"
       }
@@ -242,14 +244,18 @@ function randomFill(wordsearch){
     console.log("|_________________________|") 
   }
   
-  let wordsearch = []
-  for (let row = 0; row < 12; row ++){
-    wordsearch.push([])
-    for (let col = 0 ; col < 12 ; col++ ){
-      wordsearch[row].push("-")
-    }
-  }
   
+  const generateWordsearch = (width, height) => {
+    let wordsearch = []
+    for (let row = 0; row < height; row ++){
+      wordsearch.push([])
+      for (let col = 0 ; col < width ; col++ ){
+        wordsearch[row].push("-")
+      }
+    }
+    return wordsearch
+  }
+  let wordsearch = generateWordsearch(12,12)
   
   addWord("JAVASCRIPT",wordsearch)    
   addWord("ALGORITHM",wordsearch)    
