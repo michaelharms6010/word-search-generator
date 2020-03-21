@@ -15,8 +15,7 @@ function randomFill(wordsearch){
     let x, y = 0
     let valid = false
     while (!valid) {
-      let randIndex = Math.floor(Math.random() * 6);
-      randIndex=Math.floor(Math.random() * 8);
+      let randIndex=Math.floor(Math.random() * 8);
       console.log(randIndex)
       valid = true 
     
